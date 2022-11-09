@@ -1,5 +1,5 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-android'
     id 'kotlin-kapt'
@@ -10,13 +10,11 @@ android {
     compileSdk 32
 
     defaultConfig {
-        applicationId "com.twaun95.mapmarker"
         minSdk 26
         targetSdk 32
-        versionCode 1
-        versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -32,17 +30,22 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildFeatures{
+        dataBinding = true
+    }
 }
 
 dependencies {
-
-    implementation project(path: ':presentation')
 
     implementation(jetpackDeps)
     implementation(coroutines)
 
     implementation deps.hilt.core
     kapt deps.hilt.compiler
+
+    implementation deps.glide.core
+    implementation deps.glide.okhttp
+    kapt deps.glide.compiler
 
     implementation deps.timber
     implementation deps.gson
@@ -51,7 +54,4 @@ dependencies {
     // testing
     testImplementation(testDeps)
     androidTestImplementation(androidTestDeps)
-
-    // leak-canary
-    debugImplementation deps.leakcanary
 }
