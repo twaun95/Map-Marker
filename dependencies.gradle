@@ -9,7 +9,7 @@ ext {
             "recyclerView"          : "1.2.1",
             "timber"                : "5.0.1",
             "coroutines"            : "1.6.1",
-            "hilt"                  : "2.42",
+            "hilt"                  : "2.40.5",
             "splashscreen"          : "1.0.0-rc01",
             "glide"                 : "4.13.2",
             "gson"                  : "2.9.0",
