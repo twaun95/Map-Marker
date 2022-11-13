@@ -48,9 +48,13 @@ dependencies {
     implementation deps.hilt.core
     kapt deps.hilt.compiler
 
+    implementation(networkDeps)
+
     implementation deps.timber
     implementation deps.gson
     implementation deps.splashscreen
+
+
 
     // testing
     testImplementation(testDeps)

@@ -97,6 +97,12 @@ ext {
             deps.jetpack.lifecycle.savedstate
     ]
 
+    networkDeps = [
+            deps.network.adapter,
+            deps.network.core,
+            deps.network.interceptor
+    ]
+
     androidTestDeps = [
             deps.test.junit,
             deps.test.junitext,
