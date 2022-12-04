@@ -38,6 +38,9 @@ android {
 
 dependencies {
 
+    // kakao map
+    implementation files('libs/libDaumMapAndroid.jar')
+
     implementation(jetpackDeps)
     implementation(coroutines)
 
