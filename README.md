@@ -47,3 +47,9 @@ https://apis.map.kakao.com/android/guide/
 까지 완료.
 
 이후에 라이브러리 파일 추가
+
+
+### 이슈
+- 멀티모듈 환경에서 프레젠테이션 모듈에 라이브러리 sdk를 위치했는데
+Can`t load DaumMapEngineApi.so file 과 같은 에러..
+app 모듈에서 해야하나?..
