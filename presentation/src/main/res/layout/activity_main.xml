@@ -28,18 +28,18 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginBottom="10dp"
-            android:elevation="10dp"
-            android:text="좌표"
-            android:gravity="center"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintDimensionRatio="1"
-            app:layout_constraintRight_toRightOf="parent" />
+<!--        <androidx.appcompat.widget.AppCompatButton-->
+<!--            android:id="@+id/button"-->
+<!--            android:layout_width="60dp"-->
+<!--            android:layout_height="60dp"-->
+<!--            android:layout_marginRight="15dp"-->
+<!--            android:layout_marginBottom="10dp"-->
+<!--            android:elevation="10dp"-->
+<!--            android:text="좌표"-->
+<!--            android:gravity="center"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintDimensionRatio="1"-->
+<!--            app:layout_constraintRight_toRightOf="parent" />-->
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
