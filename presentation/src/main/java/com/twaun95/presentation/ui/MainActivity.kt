@@ -74,5 +74,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 //            setMapCenterPoint(MapPoint.mapPointWithGeoCoord(37.53737528, 127.00557633), true)
 //            currentLocationTrackingMode = MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeading
 //        }
+
+//        mapView.mapType = MapView.MapType.Standard
+        // level 클수록 더 넓게 보임
+        mapView.setZoomLevel(1, true)
+
     }
 }
