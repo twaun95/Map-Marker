@@ -10,6 +10,7 @@ import com.twaun95.presentation.R
 import com.twaun95.presentation.base.BaseActivity
 import com.twaun95.presentation.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
+import net.daum.mf.map.api.MapPOIItem
 import net.daum.mf.map.api.MapPoint
 import net.daum.mf.map.api.MapView
 import timber.log.Timber
@@ -18,6 +19,8 @@ import timber.log.Timber
 @AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     private val viewModel by viewModels<MainActivityViewModel>()
+
+    private lateinit var mapView: MapView
 
     override fun initView() {
         super.initView()
@@ -67,17 +70,43 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     }
 
     private fun setMap() {
-        val mapView = MapView(this)
-        mapView.currentLocationTrackingMode = MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeading
+        mapView = MapView(this)
+//        mapView.setShowCurrentLocationMarker(true)
+//        mapView.currentLocationTrackingMode = MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeading
         binding.viewMap.addView(mapView)
 //        mapView.apply {
 //            setMapCenterPoint(MapPoint.mapPointWithGeoCoord(37.53737528, 127.00557633), true)
 //            currentLocationTrackingMode = MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeading
 //        }
-
 //        mapView.mapType = MapView.MapType.Standard
-        // level 클수록 더 넓게 보임
-        mapView.setZoomLevel(1, true)
 
+        mapView.setZoomLevel(5, true) // level 클수록 더 넓게 보임
+        val marker = MapPOIItem()
+        marker.apply {
+            itemName = "서울시청"
+            mapPoint = MapPoint.mapPointWithGeoCoord(37.5666805, 126.9784147)
+            markerType = MapPOIItem.MarkerType.CustomImage
+            customImageResourceId = R.drawable.marker_red
+            selectedMarkerType = MapPOIItem.MarkerType.CustomImage
+            customSelectedImageResourceId = R.drawable.marker_red
+            isCustomImageAutoscale = false      // 커스텀 마커 이미지 크기 자동 조정
+//            setCustomImageAnchor(0.5f, 1.0f)
+        }
+        mapView.addPOIItem(marker)
+
+        val marker2 = MapPOIItem()
+        marker2.apply {
+            itemName = "마커2"
+            mapPoint = MapPoint.mapPointWithGeoCoord(37.4, 126.9784147)
+            markerType = MapPOIItem.MarkerType.CustomImage
+            customImageResourceId = R.drawable.marker_red
+            selectedMarkerType = MapPOIItem.MarkerType.CustomImage
+            customSelectedImageResourceId = R.drawable.marker_red
+            isCustomImageAutoscale = false
+        }
+
+        val markerArray = arrayOf(marker, marker2)
+
+        mapView.addPOIItems(markerArray)
     }
 }
