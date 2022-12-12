@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="viewModel"
+            type="com.twaun95.presentation.ui.MainActivityViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -74,15 +76,16 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button"
+            android:id="@+id/button_tracking"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginRight="15dp"
             android:layout_marginBottom="10dp"
-            android:background="@drawable/shadow_circle"
+            android:background="@{viewModel.isTrackingMode ? @drawable/tracking_mode_on : @drawable/shadow_circle}"
             android:elevation="20dp"
             android:gravity="center"
-            android:text="좌표"
+            android:onClick="@{()->viewModel.trackingModeOnOff()}"
+            android:text="트래킹"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="1"
             app:layout_constraintRight_toRightOf="parent" />

@@ -25,16 +25,30 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     override fun initView() {
         super.initView()
 
+        binding.viewModel = viewModel
+
         setPermission()
         setMap()
     }
 
     override fun setEvent() {
         super.setEvent()
+
+        binding.buttonTracking.setOnClickListener {
+            mapView.currentLocationTrackingMode = MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeading
+        }
     }
 
     override fun setObserver() {
         super.setObserver()
+
+        viewModel.isTrackingMode.observe(this) {
+            if (it) {
+                mapView.currentLocationTrackingMode = MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeading
+            } else {
+                mapView.currentLocationTrackingMode = MapView.CurrentLocationTrackingMode.TrackingModeOff
+            }
+        }
     }
 
     private fun setPermission() {
@@ -71,8 +85,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     private fun setMap() {
         mapView = MapView(this)
-//        mapView.setShowCurrentLocationMarker(true)
-//        mapView.currentLocationTrackingMode = MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeading
         binding.viewMap.addView(mapView)
 //        mapView.apply {
 //            setMapCenterPoint(MapPoint.mapPointWithGeoCoord(37.53737528, 127.00557633), true)
