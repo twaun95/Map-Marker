@@ -33,10 +33,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     override fun setEvent() {
         super.setEvent()
-
-        binding.buttonTracking.setOnClickListener {
-            mapView.currentLocationTrackingMode = MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeading
-        }
     }
 
     override fun setObserver() {
@@ -56,15 +52,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
             ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
 
         if (permissionCheck == PackageManager.PERMISSION_DENIED) { //포그라운드 위치 권한 확인
-
             //위치 권한 요청
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf<String>(Manifest.permission.ACCESS_FINE_LOCATION),
-                0
-            )
+            ActivityCompat.requestPermissions(this, arrayOf<String>(Manifest.permission.ACCESS_FINE_LOCATION), 0)
         }
-
 
         val permissionCheck2: Int =
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
@@ -75,11 +65,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
         if (permissionCheck == PackageManager.PERMISSION_DENIED) { //백그라운드 위치 권한 확인
             //위치 권한 요청
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf<String>(Manifest.permission.ACCESS_BACKGROUND_LOCATION),
-                0
-            )
+            ActivityCompat.requestPermissions(this, arrayOf<String>(Manifest.permission.ACCESS_BACKGROUND_LOCATION), 0)
         }
     }
 
