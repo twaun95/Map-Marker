@@ -10,7 +10,7 @@
     <application>
         <meta-data android:name="com.kakao.sdk.AppKey" android:value="44a25d1c5698a3dd6accf43a2f26e384"/>
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

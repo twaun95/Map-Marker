@@ -1,4 +1,4 @@
-package com.twaun95.presentation.ui
+package com.twaun95.presentation.ui.main
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -13,7 +13,15 @@ class MainActivityViewModel @Inject constructor() : BaseViewModel() {
     val isTrackingMode: LiveData<Boolean>
         get() = _isTrackingMode
 
+    private val _isMenuBar = MutableLiveData<Boolean>(false)
+    val isMenuBar: LiveData<Boolean>
+        get() = _isMenuBar
+
     fun trackingModeOnOff() {
         _isTrackingMode.value = _isTrackingMode.value == false
+    }
+
+    fun showMenuBar(isMenuBar: Boolean) {
+        _isMenuBar.value = isMenuBar
     }
 }

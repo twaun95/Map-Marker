@@ -1,4 +1,4 @@
-package com.twaun95.presentation.ui
+package com.twaun95.presentation.ui.main
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -9,11 +9,13 @@ import androidx.core.content.ContextCompat
 import com.twaun95.presentation.R
 import com.twaun95.presentation.base.BaseActivity
 import com.twaun95.presentation.databinding.ActivityMainBinding
+import com.twaun95.presentation.ui.menubar.MenuBarFragment
 import dagger.hilt.android.AndroidEntryPoint
 import net.daum.mf.map.api.MapPOIItem
 import net.daum.mf.map.api.MapPoint
 import net.daum.mf.map.api.MapView
 import timber.log.Timber
+import java.util.logging.Logger
 
 
 @AndroidEntryPoint
@@ -33,6 +35,15 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     override fun setEvent() {
         super.setEvent()
+
+        binding.buttonMenubar.setOnClickListener {
+            this.viewModel.showMenuBar(true)
+            supportFragmentManager.beginTransaction()
+                .setCustomAnimations(R.anim.slide_enter_from_left, R.anim.slide_exit_to_left, R.anim.slide_enter_from_left,R.anim.slide_exit_to_left)
+                .add(R.id.layout_frame_popup, MenuBarFragment.getInstance())
+                .addToBackStack(null)
+                .commit()
+        }
     }
 
     override fun setObserver() {
@@ -63,7 +74,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
                 TODO("VERSION.SDK_INT < Q")
             }
 
-        if (permissionCheck == PackageManager.PERMISSION_DENIED) { //백그라운드 위치 권한 확인
+        if (permissionCheck2 == PackageManager.PERMISSION_DENIED) { //백그라운드 위치 권한 확인
             //위치 권한 요청
             ActivityCompat.requestPermissions(this, arrayOf<String>(Manifest.permission.ACCESS_BACKGROUND_LOCATION), 0)
         }
