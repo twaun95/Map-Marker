@@ -104,7 +104,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/black_opacity"
-            android:visibility="@{viewModel.isMenuBar ? View.VISIBLE : View.GONE}"
+            android:visibility="@{viewModel.isMenuBar}"
             tools:visibility="gone" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
