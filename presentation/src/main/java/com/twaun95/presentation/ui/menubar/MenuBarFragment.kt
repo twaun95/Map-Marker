@@ -12,6 +12,14 @@ class MenuBarFragment : BaseFragment<FragmentMenubarBinding, MenuBarFragmentView
     override val fragmentVM: MenuBarFragmentViewModel by viewModels()
     private val activityVM: MainActivityViewModel by activityViewModels()
 
+    override fun setEvent() {
+        super.setEvent()
+
+        binding.layoutRootOpacity.setOnClickListener {
+            activity?.onBackPressed()
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
 
