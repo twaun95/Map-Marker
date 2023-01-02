@@ -67,7 +67,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
-                        android:text="현재 위치 주소" />
+                        android:hint="현재 위치 주소"
+                        android:text="@={viewModel.searchText}"
+                        android:imeOptions="actionSearch" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -103,8 +105,7 @@
             android:layout_height="match_parent"
             android:background="@color/black_opacity"
             android:visibility="@{viewModel.isMenuBar}"
-            tools:visibility="gone"
-            />
+            tools:visibility="gone" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

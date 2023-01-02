@@ -17,6 +17,10 @@ class MainActivityViewModel @Inject constructor() : BaseViewModel() {
     val isMenuBar: LiveData<Boolean>
         get() = _isMenuBar
 
+
+    val searchText by lazy { MutableLiveData<String>("") }
+
+
     fun trackingModeOnOff() {
         _isTrackingMode.value = _isTrackingMode.value == false
     }

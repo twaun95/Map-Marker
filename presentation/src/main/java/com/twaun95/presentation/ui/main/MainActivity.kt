@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.graphics.Rect
 import android.os.Build
+import android.util.Log
 import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
@@ -59,6 +60,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
             } else {
                 mapView.currentLocationTrackingMode = MapView.CurrentLocationTrackingMode.TrackingModeOff
             }
+        }
+
+        viewModel.searchText.observe(this) {
+            Timber.d(it)
         }
     }
 
