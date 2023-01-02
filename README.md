@@ -3,9 +3,11 @@
 - map(naver or kakao api)
 - bottomFragmentPopup
 - 리스트 저장 (dataStore or Room)
-- Coroutine Flow, LiveData(binding)
+- LiveData(binding)
+- RxJava
+- Binding Adapter
 - MVVM
-- Clean Architecture
+- Clean Architecture + MultiModule
 - data binding
 - value animator
 - Chucker
@@ -14,6 +16,7 @@
 - Timber
 - LeakCanary
 - admob
+- RecyclerView(ListAdapter)
 
 
 ## 카카오맵 참고
