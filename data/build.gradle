@@ -43,6 +43,8 @@ dependencies {
     implementation deps.gson
     implementation deps.splashscreen
 
+    implementation(networkDeps)
+
     // testing
     testImplementation(testDeps)
     androidTestImplementation(androidTestDeps)
