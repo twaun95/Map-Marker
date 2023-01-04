@@ -1,22 +1,18 @@
 # Map-Marker
 
-- map(naver or kakao api)
-- bottomFragmentPopup
-- 리스트 저장 (dataStore or Room)
-- LiveData(binding)
-- RxJava
-- Binding Adapter
-- MVVM
-- Clean Architecture + MultiModule
-- data binding
+- map - kakao api
+- 로컬 - Room
+- LiveData, RxJava
+- Data binding, Binding Adapter
+- MVVM + Clean Architecture + MultiModule
 - value animator
 - Chucker
-- 출시
 - KTS
+- Glide
 - Timber
 - LeakCanary
-- admob
 - RecyclerView(ListAdapter)
+- 출시 (FireBase)
 
 
 ## 카카오맵 참고
