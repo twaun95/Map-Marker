@@ -2,9 +2,9 @@
 
 - map - kakao map api
 - 로컬 - Room
-- LiveData, RxJava
+- Coroutine - Flow
 - Data binding, Binding Adapter
-- MVVM + Clean Architecture + MultiModule
+- Clean Architecture + MultiModule + MVVM
 - value animator
 - Chucker
 - KTS
@@ -12,7 +12,7 @@
 - Timber
 - LeakCanary
 - RecyclerView(ListAdapter)
-- 출시 (FireBase)
+- FireBase
 
 
 ## 카카오맵 참고
