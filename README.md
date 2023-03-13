@@ -29,6 +29,12 @@
 음..
 
 ### TODO
+1. 검색모드 ( 검색 포커스 됬을 때 )
+2. 메뉴바 열렸을 때 ( 설정, ...)
+3. 바텀 네비게이션(즐겨찾기, ) - 바텀시트 다이얼로그 
+
+
+
 -type 지정
 public MapView.MapType getMapType()
 public void setMapType(MapView.MapType mapType)
