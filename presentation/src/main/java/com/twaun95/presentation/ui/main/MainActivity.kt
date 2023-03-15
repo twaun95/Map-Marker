@@ -6,6 +6,7 @@ import android.graphics.Rect
 import android.os.Build
 import android.util.Log
 import android.view.MotionEvent
+import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.activity.viewModels
@@ -14,6 +15,7 @@ import androidx.core.content.ContextCompat
 import com.twaun95.presentation.R
 import com.twaun95.presentation.base.BaseActivity
 import com.twaun95.presentation.databinding.ActivityMainBinding
+import com.twaun95.presentation.model.ViewState
 import com.twaun95.presentation.ui.menubar.MenuBarFragment
 import dagger.hilt.android.AndroidEntryPoint
 import net.daum.mf.map.api.MapPOIItem
@@ -64,6 +66,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
         viewModel.searchText.observe(this) {
             Timber.d(it)
+        }
+        
+        binding.textSearch.setOnFocusChangeListener { view, onFocus->
+            Timber.d("$onFocus")
+            viewModel.setSearchingMode(onFocus)
         }
     }
 

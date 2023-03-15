@@ -1,8 +1,10 @@
 package com.twaun95.presentation.ui.main
 
+import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.twaun95.presentation.base.BaseViewModel
+import com.twaun95.presentation.model.ViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -17,6 +19,13 @@ class MainActivityViewModel @Inject constructor() : BaseViewModel() {
     val isMenuBar: LiveData<Boolean>
         get() = _isMenuBar
 
+    private val _viewState = MutableLiveData<ViewState>(ViewState.MAP)
+    val viewState: LiveData<ViewState>
+        get() = _viewState
+
+    private val _isSearching = MutableLiveData<Boolean>(false)
+    val isSearching: LiveData<Boolean>
+        get() = _isSearching
 
     val searchText by lazy { MutableLiveData<String>("") }
 
@@ -27,5 +36,13 @@ class MainActivityViewModel @Inject constructor() : BaseViewModel() {
 
     fun showMenuBar(isMenuBar: Boolean) {
         _isMenuBar.value = isMenuBar
+    }
+
+    fun setViewState(state: ViewState) {
+        _viewState.value = state
+    }
+
+    fun setSearchingMode(isSearching: Boolean) {
+        _isSearching.value = isSearching
     }
 }
