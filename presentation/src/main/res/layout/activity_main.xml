@@ -64,12 +64,13 @@
                     app:layout_constraintRight_toLeftOf="@id/button_else">
 
                     <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/text_search"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
                         android:hint="현재 위치 주소"
-                        android:text="@={viewModel.searchText}"
-                        android:imeOptions="actionSearch" />
+                        android:imeOptions="actionSearch"
+                        android:text="@={viewModel.searchText}" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -105,6 +106,14 @@
             android:layout_height="match_parent"
             android:background="@color/black_opacity"
             android:visibility="@{viewModel.isMenuBar}"
+            tools:visibility="gone" />
+
+        <FrameLayout
+            android:id="@+id/layout_frame_search"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:visibility="@{viewModel.isSearching}"
             tools:visibility="gone" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
