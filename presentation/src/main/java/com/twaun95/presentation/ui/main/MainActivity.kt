@@ -1,28 +1,20 @@
 package com.twaun95.presentation.ui.main
 
-import android.Manifest
-import android.content.pm.PackageManager
 import android.graphics.Rect
-import android.os.Build
-import android.util.Log
 import android.view.MotionEvent
-import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.activity.viewModels
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import com.twaun95.presentation.R
 import com.twaun95.presentation.base.BaseActivity
 import com.twaun95.presentation.databinding.ActivityMainBinding
-import com.twaun95.presentation.model.ViewState
 import com.twaun95.presentation.ui.menubar.MenuBarFragment
+import com.twaun95.presentation.ui.search.SearchFragment
 import dagger.hilt.android.AndroidEntryPoint
 import net.daum.mf.map.api.MapPOIItem
 import net.daum.mf.map.api.MapPoint
 import net.daum.mf.map.api.MapView
 import timber.log.Timber
-import java.util.logging.Logger
 
 
 @AndroidEntryPoint
@@ -34,9 +26,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     override fun initView() {
         super.initView()
 
+
         binding.viewModel = viewModel
 
-        setPermission()
         setMap()
     }
 
@@ -44,10 +36,16 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         super.setEvent()
 
         binding.buttonMenubar.setOnClickListener {
-            this.viewModel.showMenuBar(true)
             supportFragmentManager.beginTransaction()
                 .setCustomAnimations(R.anim.slide_enter_from_left, R.anim.slide_exit_to_left, R.anim.slide_enter_from_left,R.anim.slide_exit_to_left)
                 .add(R.id.layout_frame_popup, MenuBarFragment.getInstance())
+                .addToBackStack(null)
+                .commit()
+        }
+
+        binding.textSearch.setOnClickListener {
+            supportFragmentManager.beginTransaction()
+                .add(R.id.frame_main, SearchFragment.getInstance(), SearchFragment.TAG)
                 .addToBackStack(null)
                 .commit()
         }
@@ -64,36 +62,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
             }
         }
 
-        viewModel.searchText.observe(this) {
+        viewModel.currentLocation.observe(this) {
             Timber.d(it)
         }
-        
-        binding.textSearch.setOnFocusChangeListener { view, onFocus->
-            Timber.d("$onFocus")
-            viewModel.setSearchingMode(onFocus)
-        }
-    }
 
-    private fun setPermission() {
-        val permissionCheck: Int =
-            ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-
-        if (permissionCheck == PackageManager.PERMISSION_DENIED) { //포그라운드 위치 권한 확인
-            //위치 권한 요청
-            ActivityCompat.requestPermissions(this, arrayOf<String>(Manifest.permission.ACCESS_FINE_LOCATION), 0)
-        }
-
-        val permissionCheck2: Int =
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_BACKGROUND_LOCATION)
-            } else {
-                TODO("VERSION.SDK_INT < Q")
-            }
-
-        if (permissionCheck2 == PackageManager.PERMISSION_DENIED) { //백그라운드 위치 권한 확인
-            //위치 권한 요청
-            ActivityCompat.requestPermissions(this, arrayOf<String>(Manifest.permission.ACCESS_BACKGROUND_LOCATION), 0)
-        }
     }
 
     private fun setMap() {
