@@ -10,22 +10,15 @@ import javax.inject.Inject
 class MainActivityViewModel @Inject constructor() : BaseViewModel() {
 
     private val _isTrackingMode = MutableLiveData<Boolean>(false)
-    val isTrackingMode: LiveData<Boolean>
-        get() = _isTrackingMode
+    val isTrackingMode: LiveData<Boolean> get() = _isTrackingMode
 
-    private val _isMenuBar = MutableLiveData<Boolean>(false)
-    val isMenuBar: LiveData<Boolean>
-        get() = _isMenuBar
-
-
-    val searchText by lazy { MutableLiveData<String>("") }
-
+    val currentLocation by lazy { MutableLiveData<String>("") }
 
     fun trackingModeOnOff() {
         _isTrackingMode.value = _isTrackingMode.value == false
     }
 
-    fun showMenuBar(isMenuBar: Boolean) {
-        _isMenuBar.value = isMenuBar
+    fun onSearch(text: String) {
+        currentLocation.postValue(text)
     }
 }

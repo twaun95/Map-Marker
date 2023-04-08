@@ -15,15 +15,10 @@ class MenuBarFragment : BaseFragment<FragmentMenubarBinding, MenuBarFragmentView
     override fun setEvent() {
         super.setEvent()
 
+
         binding.layoutRootOpacity.setOnClickListener {
             activity?.onBackPressed()
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-
-        activityVM.showMenuBar(false)
     }
 
     companion object {
