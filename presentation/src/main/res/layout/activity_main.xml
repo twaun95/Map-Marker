@@ -10,111 +10,104 @@
             type="com.twaun95.presentation.ui.main.MainActivityViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <FrameLayout
+        android:id="@+id/frame_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <FrameLayout
-            android:id="@+id/view_map"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:layout_editor_absoluteX="77dp"
-            tools:layout_editor_absoluteY="200dp" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/layout_search"
+            <FrameLayout
+                android:id="@+id/view_map"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="15dp"
-                android:background="@drawable/search"
-                android:elevation="15dp"
-                app:layout_constraintTop_toTopOf="parent">
+                android:layout_height="match_parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/button_menubar"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    app:layout_constraintDimensionRatio="1"
-                    app:layout_constraintLeft_toLeftOf="parent">
+                    android:id="@+id/layout_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/search"
+                    android:elevation="15dp"
+                    app:layout_constraintTop_toTopOf="parent">
 
-                    <ImageView
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/button_menubar"
                         android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:background="@drawable/menu"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintDimensionRatio="1"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHeight_percent=".45"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    app:layout_constraintLeft_toRightOf="@id/button_menubar"
-                    app:layout_constraintRight_toLeftOf="@id/button_else">
-
-                    <androidx.appcompat.widget.AppCompatEditText
-                        android:id="@+id/text_search"
-                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity="center_vertical"
-                        android:hint="현재 위치 주소"
-                        android:imeOptions="actionSearch"
-                        android:text="@={viewModel.searchText}" />
+                        app:layout_constraintDimensionRatio="1"
+                        app:layout_constraintLeft_toLeftOf="parent">
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:background="@drawable/menu"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHeight_percent=".45"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        app:layout_constraintLeft_toRightOf="@id/button_menubar"
+                        app:layout_constraintRight_toLeftOf="@id/button_else">
+
+                        <TextView
+                            android:id="@+id/text_search"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:text="@={viewModel.currentLocation}"
+                            tools:text="현제 위치" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/button_else"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        app:layout_constraintDimensionRatio="1"
+                        app:layout_constraintRight_toRightOf="parent" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/button_else"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button_tracking"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@{viewModel.isTrackingMode ? @drawable/tracking_mode_on : @drawable/shadow_circle}"
+                    android:elevation="20dp"
+                    android:gravity="center"
+                    android:onClick="@{()->viewModel.trackingModeOnOff()}"
+                    android:text="트래킹"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintDimensionRatio="1"
                     app:layout_constraintRight_toRightOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/button_tracking"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginRight="15dp"
-                android:layout_marginBottom="10dp"
-                android:background="@{viewModel.isTrackingMode ? @drawable/tracking_mode_on : @drawable/shadow_circle}"
-                android:elevation="20dp"
-                android:gravity="center"
-                android:onClick="@{()->viewModel.trackingModeOnOff()}"
-                android:text="트래킹"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintDimensionRatio="1"
-                app:layout_constraintRight_toRightOf="parent" />
+            <FrameLayout
+                android:id="@+id/layout_frame_popup"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:visibility="gone" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <FrameLayout
-            android:id="@+id/layout_frame_popup"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/black_opacity"
-            android:visibility="@{viewModel.isMenuBar}"
-            tools:visibility="gone" />
-
-        <FrameLayout
-            android:id="@+id/layout_frame_search"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/white"
-            android:visibility="@{viewModel.isSearching}"
-            tools:visibility="gone" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
 </layout>
