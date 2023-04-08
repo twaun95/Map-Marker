@@ -1,18 +1,16 @@
 # Map-Marker
 
-- map - kakao map api
-- 로컬 - Room
-- Coroutine - Flow
-- Data binding, Binding Adapter
 - Clean Architecture + MultiModule + MVVM
-- value animator
-- Chucker
-- KTS
-- Glide
-- Timber
-- LeakCanary
+- KTS 빌드 구성
+- Coroutine, Flow
+- JetPack
+  - Data binding
+  - DataStore
+- Retrofit, Glide, Timber, LeakCanary
 - RecyclerView(ListAdapter)
+- kakao map api
 - FireBase
+- Kotest
 
 
 ## 카카오맵 참고
