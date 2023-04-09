@@ -1,3 +1,4 @@
+
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
@@ -15,6 +16,11 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
+
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file('local.properties').newDataInputStream())
+        buildConfigField "String", "API_KEY", properties["api_key"]
+        buildConfigField "String", "BASE_URL", properties["base_url"]
     }
 
     buildTypes {
