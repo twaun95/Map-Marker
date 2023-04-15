@@ -1,18 +1,16 @@
 # Map-Marker
 
-- map - kakao map api
-- 로컬 - Room
-- Coroutine - Flow
-- Data binding, Binding Adapter
 - Clean Architecture + MultiModule + MVVM
-- value animator
-- Chucker
-- KTS
-- Glide
-- Timber
-- LeakCanary
+- KTS 빌드 구성
+- Coroutine, Flow
+- JetPack
+  - Data binding
+  - DataStore
+- Retrofit, Glide, Timber, LeakCanary
 - RecyclerView(ListAdapter)
+- kakao map api
 - FireBase
+- Kotest
 
 
 ## 카카오맵 참고
@@ -29,6 +27,12 @@
 음..
 
 ### TODO
+1. 검색모드 ( 검색 포커스 됬을 때 )
+2. 메뉴바 열렸을 때 ( 설정, ...)
+3. 바텀 네비게이션(즐겨찾기, ) - 바텀시트 다이얼로그 
+
+
+
 -type 지정
 public MapView.MapType getMapType()
 public void setMapType(MapView.MapType mapType)
