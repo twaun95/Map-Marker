@@ -16,6 +16,6 @@ class PlaceRepositoryImpl @Inject constructor(
             )
         )
 
-        Timber.d("$result")
+        Timber.d("${result.documents.first()}")
     }
 }

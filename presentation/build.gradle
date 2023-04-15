@@ -37,6 +37,7 @@ android {
 }
 
 dependencies {
+    implementation project(path: ':domain')
 
     // kakao map
     implementation files('libs/libDaumMapAndroid.jar')
