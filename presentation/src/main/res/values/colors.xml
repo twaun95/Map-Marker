@@ -7,5 +7,5 @@
     <color name="transparent">#00000000</color>
     <color name="black_opacity">#4D000000</color>
 
-
+    <color name="loading">#4447CD</color>
 </resources>

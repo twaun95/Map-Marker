@@ -39,10 +39,10 @@
                     android:id="@+id/btn_back"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    app:layout_constraintDimensionRatio="1"
                     android:gravity="center"
                     android:text="뒤로"
-                    app:layout_constraintLeft_toLeftOf="parent"/>
+                    app:layout_constraintDimensionRatio="1"
+                    app:layout_constraintLeft_toLeftOf="parent" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="0dp"
@@ -56,9 +56,9 @@
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
                         android:hint="위치 검색"
-                        android:text="@={fragmentVM.inputSearch}"
                         android:imeOptions="actionSearch"
                         android:singleLine="true"
+                        android:text="@={fragmentVM.inputSearch}"
                         tools:text="위치 검색" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -66,12 +66,35 @@
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_search"
                     android:layout_width="0dp"
+                    android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="검색"
-                    android:layout_height="match_parent"
                     app:layout_constraintDimensionRatio="1"
-                    app:layout_constraintRight_toRightOf="parent"/>
+                    app:layout_constraintRight_toRightOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layout_search">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <include
+            layout="@layout/view_loading"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:isLoading="@{fragmentVM.loading}"
+            tools:visibility="gone" />
     </FrameLayout>
 </layout>
