@@ -6,9 +6,15 @@
 - JetPack
   - Data binding
   - DataStore
+  - Paging3
 - Retrofit, Glide, Timber, LeakCanary
 - RecyclerView(ListAdapter)
-- kakao map api
+- kakao api
+  - kakao Map
+  - 장소 검색
+    - 키워드
+    - 카테고리
+  - 주소 검색
 - FireBase
 - Kotest
 
