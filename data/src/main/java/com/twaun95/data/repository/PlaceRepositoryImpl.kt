@@ -20,8 +20,11 @@ class PlaceRepositoryImpl @Inject constructor(
         Timber.d("${result.documents.first()}")
         return result.documents.map {
             Place(
+                it.id,
                 it.place_name,
-                it.address_name
+                it.address_name,
+                it.category_name,
+                it.place_url
             )
         }
     }

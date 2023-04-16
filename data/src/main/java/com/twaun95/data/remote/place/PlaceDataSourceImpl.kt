@@ -13,9 +13,6 @@ class PlaceDataSourceImpl @Inject constructor(
         val result = searchService.searchPlaceByKeyword(
             req.query
         )
-
-        Timber.d("TAEWAUN: result raw : ${result.raw()}")
-
         return result.body() ?: ResSearchPlaceByKeyword.empty()
     }
 }
