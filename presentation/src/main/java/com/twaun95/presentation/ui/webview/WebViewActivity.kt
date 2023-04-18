@@ -1,5 +1,7 @@
 package com.twaun95.presentation.ui.webview
 
+import android.content.Context
+import android.content.Intent
 import androidx.activity.viewModels
 import com.twaun95.presentation.R
 import com.twaun95.presentation.base.BaseActivity
@@ -12,6 +14,9 @@ class WebViewActivity : BaseActivity<ActivityWebviewBinding>(R.layout.activity_w
 
     override fun initView() {
         super.initView()
+        intent.getStringExtra(URL)?.let {
+            binding.viewWeb.loadUrl(it)
+        }
     }
 
     override fun setEvent() {
@@ -23,7 +28,11 @@ class WebViewActivity : BaseActivity<ActivityWebviewBinding>(R.layout.activity_w
     }
 
     companion object {
-
-        fun newInstance() : WebViewActivity = WebViewActivity()
+        const val URL = "URL"
+        fun newInstance(context: Context, url: String) {
+            val intent = Intent(context, WebViewActivity::class.java)
+            intent.putExtra(URL, url)
+            context.startActivity(intent)
+        }
     }
 }

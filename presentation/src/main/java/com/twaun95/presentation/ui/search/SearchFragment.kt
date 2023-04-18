@@ -8,6 +8,7 @@ import com.twaun95.presentation.adapter.PlaceListAdapter
 import com.twaun95.presentation.base.BaseFragment
 import com.twaun95.presentation.databinding.FragmentSearchBinding
 import com.twaun95.presentation.ui.main.MainActivityViewModel
+import com.twaun95.presentation.ui.webview.WebViewActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -55,7 +56,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchFragmentViewMod
         binding.rvSearch.apply {
             adapter = placeAdapter.apply {
                 onClick = { item ->
-
+                    WebViewActivity.newInstance(requireContext(), item.url)
                 }
             }
         }
