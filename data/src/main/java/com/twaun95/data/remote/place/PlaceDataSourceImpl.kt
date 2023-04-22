@@ -11,7 +11,15 @@ class PlaceDataSourceImpl @Inject constructor(
 ) : PlaceDataSource {
     override suspend fun byKeyword(req: ReqSearchPlaceByKeyword): ResSearchPlaceByKeyword {
         val result = searchService.searchPlaceByKeyword(
-            req.query
+            query = req.query,
+            category_group_code = req.category_group_code,
+            x = req.x,
+            y = req.y,
+            radius = req.radius,
+            rect = req.rect,
+            page = req.page,
+            size = req.size,
+            sort = req.sort
         )
         return result.body() ?: ResSearchPlaceByKeyword.empty()
     }

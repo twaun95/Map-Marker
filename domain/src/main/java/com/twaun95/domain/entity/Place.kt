@@ -5,5 +5,6 @@ data class Place(
     val name: String,
     val address: String,
     val category: String,
+    val category_group_name: String,
     val url: String
 )
