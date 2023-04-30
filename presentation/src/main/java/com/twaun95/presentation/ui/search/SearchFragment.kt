@@ -56,7 +56,9 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchFragmentViewMod
         binding.rvSearch.apply {
             adapter = placeAdapter.apply {
                 onClick = { item ->
-                    WebViewActivity.newInstance(requireContext(), item.url)
+                    activityVM.onSelectItem(item)
+                    activity?.onBackPressed()
+//                    WebViewActivity.newInstance(requireContext(), item.url)
                 }
             }
         }

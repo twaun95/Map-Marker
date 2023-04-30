@@ -5,6 +5,7 @@ import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.activity.viewModels
+import com.twaun95.domain.entity.Place
 import com.twaun95.presentation.R
 import com.twaun95.presentation.base.BaseActivity
 import com.twaun95.presentation.databinding.ActivityMainBinding
@@ -25,7 +26,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     override fun initView() {
         super.initView()
-
 
         binding.viewModel = viewModel
 
@@ -66,6 +66,27 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
             Timber.d(it)
         }
 
+        viewModel.selectedPace.observe(this) {
+            Timber.d("selected $it")
+            addMarker(it)
+        }
+    }
+
+    private fun addMarker(item: Place) {
+        val marker = MapPOIItem()
+        marker.apply {
+            itemName = item.name
+            mapPoint = MapPoint.mapPointWithGeoCoord(item.y.toDouble(), item.x.toDouble())
+            markerType = MapPOIItem.MarkerType.CustomImage
+            customImageResourceId = R.drawable.marker_red
+            selectedMarkerType = MapPOIItem.MarkerType.CustomImage
+            customSelectedImageResourceId = R.drawable.marker_red
+            isCustomImageAutoscale = false      // 커스텀 마커 이미지 크기 자동 조정
+        }
+        mapView.addPOIItem(marker)
+
+        // TODO  해당 위치로 지동 중심 이동
+        // TODO  맡커 클릭시 말풍선 나오고 다시한번 누르면 BottomSheetDialog 띄우기
     }
 
     private fun setMap() {
@@ -78,33 +99,33 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 //        mapView.mapType = MapView.MapType.Standard
 
         mapView.setZoomLevel(5, true) // level 클수록 더 넓게 보임
-        val marker = MapPOIItem()
-        marker.apply {
-            itemName = "서울시청"
-            mapPoint = MapPoint.mapPointWithGeoCoord(37.5666805, 126.9784147)
-            markerType = MapPOIItem.MarkerType.CustomImage
-            customImageResourceId = R.drawable.marker_red
-            selectedMarkerType = MapPOIItem.MarkerType.CustomImage
-            customSelectedImageResourceId = R.drawable.marker_red
-            isCustomImageAutoscale = false      // 커스텀 마커 이미지 크기 자동 조정
-//            setCustomImageAnchor(0.5f, 1.0f)
-        }
-        mapView.addPOIItem(marker)
+//        val marker = MapPOIItem()
+//        marker.apply {
+//            itemName = "서울시청"
+//            mapPoint = MapPoint.mapPointWithGeoCoord(37.5666805, 126.9784147)
+//            markerType = MapPOIItem.MarkerType.CustomImage
+//            customImageResourceId = R.drawable.marker_red
+//            selectedMarkerType = MapPOIItem.MarkerType.CustomImage
+//            customSelectedImageResourceId = R.drawable.marker_red
+//            isCustomImageAutoscale = false      // 커스텀 마커 이미지 크기 자동 조정
+////            setCustomImageAnchor(0.5f, 1.0f)
+//        }
+//        mapView.addPOIItem(marker)
 
-        val marker2 = MapPOIItem()
-        marker2.apply {
-            itemName = "마커2"
-            mapPoint = MapPoint.mapPointWithGeoCoord(37.4, 126.9784147)
-            markerType = MapPOIItem.MarkerType.CustomImage
-            customImageResourceId = R.drawable.marker_red
-            selectedMarkerType = MapPOIItem.MarkerType.CustomImage
-            customSelectedImageResourceId = R.drawable.marker_red
-            isCustomImageAutoscale = false
-        }
-
-        val markerArray = arrayOf(marker, marker2)
-
-        mapView.addPOIItems(markerArray)
+//        val marker2 = MapPOIItem()
+//        marker2.apply {
+//            itemName = "마커2"
+//            mapPoint = MapPoint.mapPointWithGeoCoord(37.4, 126.9784147)
+//            markerType = MapPOIItem.MarkerType.CustomImage
+//            customImageResourceId = R.drawable.marker_red
+//            selectedMarkerType = MapPOIItem.MarkerType.CustomImage
+//            customSelectedImageResourceId = R.drawable.marker_red
+//            isCustomImageAutoscale = false
+//        }
+//
+//        val markerArray = arrayOf(marker, marker2)
+//
+//        mapView.addPOIItems(markerArray)
     }
 
     override fun dispatchTouchEvent(event: MotionEvent): Boolean {

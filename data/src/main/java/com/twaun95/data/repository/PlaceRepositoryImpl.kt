@@ -14,7 +14,7 @@ class PlaceRepositoryImpl @Inject constructor(
         val result = placeDataSource.byKeyword(
             ReqSearchPlaceByKeyword(
                 query = keyword,
-                category_group_code = "CE7",
+//                category_group_code = "CE7",
             )
         )
 
@@ -26,7 +26,9 @@ class PlaceRepositoryImpl @Inject constructor(
                 it.address_name,
                 it.category_name,
                 it.category_group_code,
-                it.place_url
+                it.place_url,
+                it.x,
+                it.y
             )
         }
     }
