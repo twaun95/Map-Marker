@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.twaun95.domain.entity.Place
 import com.twaun95.domain.usecase.GetPlaceByKeywordUseCase
 import com.twaun95.presentation.base.BaseViewModel
+import com.twaun95.presentation.model.MapViewStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -13,6 +14,9 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainActivityViewModel @Inject constructor() : BaseViewModel() {
+
+    private val _mapViewStatus = MutableLiveData<MapViewStatus>(MapViewStatus.CURRENT_LOCATION)
+    val mapViewStatus: LiveData<MapViewStatus> get() = _mapViewStatus
 
     private val _isTrackingMode = MutableLiveData<Boolean>(false)
     val isTrackingMode: LiveData<Boolean> get() = _isTrackingMode
@@ -29,5 +33,9 @@ class MainActivityViewModel @Inject constructor() : BaseViewModel() {
     fun onSelectItem(item: Place) {
         _selectedPace.value = item
         currentLocation.value = item.address
+    }
+
+    fun updateMapViewStatus(status: MapViewStatus) {
+        _mapViewStatus.value = status
     }
 }

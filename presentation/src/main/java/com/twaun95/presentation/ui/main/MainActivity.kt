@@ -9,9 +9,11 @@ import com.twaun95.domain.entity.Place
 import com.twaun95.presentation.R
 import com.twaun95.presentation.base.BaseActivity
 import com.twaun95.presentation.databinding.ActivityMainBinding
+import com.twaun95.presentation.model.MapViewStatus
 import com.twaun95.presentation.ui.menubar.MenuBarFragment
 import com.twaun95.presentation.ui.search.SearchFragment
 import dagger.hilt.android.AndroidEntryPoint
+import net.daum.mf.map.api.CameraUpdate
 import net.daum.mf.map.api.MapPOIItem
 import net.daum.mf.map.api.MapPoint
 import net.daum.mf.map.api.MapView
@@ -49,10 +51,28 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
                 .addToBackStack(null)
                 .commit()
         }
+
+        binding.buttonClose.setOnClickListener {
+            viewModel.updateMapViewStatus(MapViewStatus.CURRENT_LOCATION)
+        }
     }
 
     override fun setObserver() {
         super.setObserver()
+
+        viewModel.mapViewStatus.observe(this) {
+            Timber.d("$it")
+            when(it) {
+                MapViewStatus.CURRENT_LOCATION -> {
+                    // 현재 주소 확인 후 상단바에 표시
+                    mapView.removeAllPOIItems()
+                }
+                MapViewStatus.MARKER -> {
+                    // 마커 주소 상단바에 표시, X 표시
+                }
+                else -> {}
+            }
+        }
 
         viewModel.isTrackingMode.observe(this) {
             if (it) {
@@ -69,6 +89,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         viewModel.selectedPace.observe(this) {
             Timber.d("selected $it")
             addMarker(it)
+            viewModel.updateMapViewStatus(MapViewStatus.MARKER)
         }
     }
 
@@ -85,17 +106,19 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         }
         mapView.addPOIItem(marker)
 
-        // TODO  해당 위치로 지동 중심 이동
+        mapView.setMapCenterPointAndZoomLevel(MapPoint.mapPointWithGeoCoord(item.y.toDouble(), item.x.toDouble()),2,true)
+        // TODO  해당 위치로 지동 중심 이동, 줌
+
         // TODO  맡커 클릭시 말풍선 나오고 다시한번 누르면 BottomSheetDialog 띄우기
     }
 
     private fun setMap() {
         mapView = MapView(this)
         binding.viewMap.addView(mapView)
-//        mapView.apply {
+        mapView.apply {
 //            setMapCenterPoint(MapPoint.mapPointWithGeoCoord(37.53737528, 127.00557633), true)
-//            currentLocationTrackingMode = MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeading
-//        }
+            currentLocationTrackingMode = MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeading
+        }
 //        mapView.mapType = MapView.MapType.Standard
 
         mapView.setZoomLevel(5, true) // level 클수록 더 넓게 보임
