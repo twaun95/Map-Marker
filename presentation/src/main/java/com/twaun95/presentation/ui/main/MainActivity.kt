@@ -107,7 +107,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         mapView.addPOIItem(marker)
 
         mapView.setMapCenterPointAndZoomLevel(MapPoint.mapPointWithGeoCoord(item.y.toDouble(), item.x.toDouble()),2,true)
-        // TODO  해당 위치로 지동 중심 이동, 줌
 
         // TODO  맡커 클릭시 말풍선 나오고 다시한번 누르면 BottomSheetDialog 띄우기
     }

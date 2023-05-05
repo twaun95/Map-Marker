@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.twaun95.domain.entity.Place" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{data.name}"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="장소이름" />
+
+        <TextView
+            android:id="@+id/tv_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{data.address}"
+            app:layout_constraintTop_toBottomOf="@id/tv_name"
+            tools:text="장소주소" />
+
+        <TextView
+            android:id="@+id/tv_category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{data.category}"
+            app:layout_constraintTop_toBottomOf="@id/tv_address"
+            tools:text="카테고리" />
+
+        <TextView
+            android:id="@+id/tv_category_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{data.category_group_name}"
+            app:layout_constraintTop_toBottomOf="@id/tv_category"
+            tools:text="카테고리 그룹" />
+
+        <TextView
+            android:id="@+id/tv_url"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{data.url}"
+            app:layout_constraintTop_toBottomOf="@id/tv_category_group"
+            tools:text="url" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
