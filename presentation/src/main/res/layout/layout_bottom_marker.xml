@@ -8,6 +8,10 @@
         <variable
             name="data"
             type="com.twaun95.domain.entity.Place" />
+
+        <variable
+            name="groupCode"
+            type="com.twaun95.domain.entity.CategoryGroupCode" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -28,6 +32,7 @@
 
         <TextView
             android:id="@+id/tv_address"
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@{data.address}"
@@ -46,7 +51,6 @@
             android:id="@+id/tv_category_group"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{data.category_group_name}"
             app:layout_constraintTop_toBottomOf="@id/tv_category"
             tools:text="카테고리 그룹" />
 

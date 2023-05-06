@@ -18,7 +18,7 @@ class MainActivityViewModel @Inject constructor() : BaseViewModel() {
     private val _mapViewStatus = MutableLiveData<MapViewStatus>(MapViewStatus.CURRENT_LOCATION)
     val mapViewStatus: LiveData<MapViewStatus> get() = _mapViewStatus
 
-    private val _isTrackingMode = MutableLiveData<Boolean>(false)
+    private val _isTrackingMode = MutableLiveData<Boolean>(true)
     val isTrackingMode: LiveData<Boolean> get() = _isTrackingMode
 
     val currentLocation by lazy { MutableLiveData<String>("") }

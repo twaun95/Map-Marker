@@ -127,6 +127,7 @@
                 app:layout_constraintTop_toBottomOf="@id/view_map">
 
                 <include
+                    android:id="@+id/view_bottom"
                     layout="@layout/layout_bottom_marker"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

@@ -5,6 +5,7 @@ import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.activity.viewModels
+import com.twaun95.domain.entity.CategoryGroupCode
 import com.twaun95.domain.entity.Place
 import com.twaun95.presentation.R
 import com.twaun95.presentation.base.BaseActivity
@@ -12,6 +13,7 @@ import com.twaun95.presentation.databinding.ActivityMainBinding
 import com.twaun95.presentation.model.MapViewStatus
 import com.twaun95.presentation.ui.menubar.MenuBarFragment
 import com.twaun95.presentation.ui.search.SearchFragment
+import com.twaun95.presentation.ui.webview.WebViewActivity
 import dagger.hilt.android.AndroidEntryPoint
 import net.daum.mf.map.api.CameraUpdate
 import net.daum.mf.map.api.MapPOIItem
@@ -61,7 +63,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         super.setObserver()
 
         viewModel.mapViewStatus.observe(this) {
-            Timber.d("$it")
             when(it) {
                 MapViewStatus.CURRENT_LOCATION -> {
                     // 현재 주소 확인 후 상단바에 표시
@@ -77,6 +78,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         viewModel.isTrackingMode.observe(this) {
             if (it) {
                 mapView.currentLocationTrackingMode = MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeading
+
             } else {
                 mapView.currentLocationTrackingMode = MapView.CurrentLocationTrackingMode.TrackingModeOff
             }
@@ -90,6 +92,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
             Timber.d("selected $it")
             addMarker(it)
             viewModel.updateMapViewStatus(MapViewStatus.MARKER)
+            setBottomPlace(it.url, it.category_group_name)
         }
     }
 
@@ -121,6 +124,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 //        mapView.mapType = MapView.MapType.Standard
 
         mapView.setZoomLevel(5, true) // level 클수록 더 넓게 보임
+
 //        val marker = MapPOIItem()
 //        marker.apply {
 //            itemName = "서울시청"
@@ -145,9 +149,16 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 //            isCustomImageAutoscale = false
 //        }
 //
-//        val markerArray = arrayOf(marker, marker2)
-//
 //        mapView.addPOIItems(markerArray)
+
+//        val markerArray = arrayOf(marker, marker2)
+    }
+
+    private fun setBottomPlace(url: String, code: String) {
+        binding.viewBottom.tvUrl.setOnClickListener {
+            WebViewActivity.newInstance(this, url)
+        }
+        binding.viewBottom.tvCategoryGroup.text = CategoryGroupCode.valueOf(code).description
     }
 
     override fun dispatchTouchEvent(event: MotionEvent): Boolean {
