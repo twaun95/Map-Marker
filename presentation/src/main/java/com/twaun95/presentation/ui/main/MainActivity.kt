@@ -84,10 +84,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
             }
         }
 
-        viewModel.currentLocation.observe(this) {
-            Timber.d(it)
-        }
-
         viewModel.selectedPace.observe(this) {
             Timber.d("selected $it")
             addMarker(it)
@@ -108,21 +104,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
             isCustomImageAutoscale = false      // 커스텀 마커 이미지 크기 자동 조정
         }
         mapView.addPOIItem(marker)
-
         mapView.setMapCenterPointAndZoomLevel(MapPoint.mapPointWithGeoCoord(item.y.toDouble(), item.x.toDouble()),2,true)
-
-        // TODO  맡커 클릭시 말풍선 나오고 다시한번 누르면 BottomSheetDialog 띄우기
     }
 
     private fun setMap() {
         mapView = MapView(this)
         binding.viewMap.addView(mapView)
-        mapView.apply {
-//            setMapCenterPoint(MapPoint.mapPointWithGeoCoord(37.53737528, 127.00557633), true)
-            currentLocationTrackingMode = MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeading
-        }
-//        mapView.mapType = MapView.MapType.Standard
-
         mapView.setZoomLevel(5, true) // level 클수록 더 넓게 보임
 
 //        val marker = MapPOIItem()
@@ -158,7 +145,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         binding.viewBottom.tvUrl.setOnClickListener {
             WebViewActivity.newInstance(this, url)
         }
-        binding.viewBottom.tvCategoryGroup.text = CategoryGroupCode.valueOf(code).description
+
+        if (code.isNotEmpty()) binding.viewBottom.tvCategoryGroup.text = CategoryGroupCode.valueOf(code).description
     }
 
     override fun dispatchTouchEvent(event: MotionEvent): Boolean {

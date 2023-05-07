@@ -32,9 +32,9 @@
 
         <TextView
             android:id="@+id/tv_address"
-            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:text="@{data.address}"
             app:layout_constraintTop_toBottomOf="@id/tv_name"
             tools:text="장소주소" />
@@ -58,9 +58,10 @@
             android:id="@+id/tv_url"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{data.url}"
-            app:layout_constraintTop_toBottomOf="@id/tv_category_group"
-            tools:text="url" />
+            android:text="링크 이동"
+            android:textColor="@color/blue"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/tv_category_group" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

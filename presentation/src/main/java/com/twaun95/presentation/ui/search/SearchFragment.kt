@@ -48,7 +48,6 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchFragmentViewMod
 
         binding.btnSearch.setOnClickListener {
             fragmentVM.onSearch()
-//            activity?.onBackPressed()
         }
     }
 
@@ -58,14 +57,13 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchFragmentViewMod
                 onClick = { item ->
                     activityVM.onSelectItem(item)
                     activity?.onBackPressed()
-//                    WebViewActivity.newInstance(requireContext(), item.url)
                 }
             }
         }
     }
 
     companion object {
-        val TAG = "SEARCH_FRAGMENT"
+        const val TAG = "SEARCH_FRAGMENT"
 
         fun getInstance(): SearchFragment = SearchFragment()
     }
