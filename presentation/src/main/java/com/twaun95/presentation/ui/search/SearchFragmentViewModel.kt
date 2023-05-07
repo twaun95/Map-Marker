@@ -23,7 +23,6 @@ class SearchFragmentViewModel @Inject constructor(
     val placeList: StateFlow<List<Place>> get() = _placeList
 
     fun onSearch() {
-//        currentLocation.postValue(text)
         viewModelScope.launch {
             startLoading()
             kotlin.runCatching {
@@ -31,8 +30,8 @@ class SearchFragmentViewModel @Inject constructor(
             }.onSuccess {
                 _placeList.value = it
                 Timber.d("SUCCESS")
-                Timber.d("first: ${it.first()}")
             }.onFailure {
+                _placeList.value = emptyList()
                 Timber.d("FAIL: ${it.message}")
             }
             stopLoading()

@@ -13,8 +13,7 @@ class PlaceRepositoryImpl @Inject constructor(
     override suspend fun byKeyword(keyword: String): List<Place> {
         val result = placeDataSource.byKeyword(
             ReqSearchPlaceByKeyword(
-                query = keyword,
-//                category_group_code = "CE7",
+                query = keyword
             )
         )
 
