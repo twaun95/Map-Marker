@@ -24,6 +24,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchFragmentViewMod
     override fun initView() {
         super.initView()
 
+        binding.activity = activity
         binding.fragmentVM = this.fragmentVM
         binding.activityVM = this.activityVM
 

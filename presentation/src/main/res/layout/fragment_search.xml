@@ -6,6 +6,10 @@
     <data>
 
         <variable
+            name="activity"
+            type="androidx.fragment.app.FragmentActivity" />
+
+        <variable
             name="fragmentVM"
             type="com.twaun95.presentation.ui.search.SearchFragmentViewModel" />
 
@@ -59,11 +63,12 @@
                         android:id="@+id/text_search"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:activity="@{activity}"
                         android:background="@null"
                         android:gravity="center_vertical"
                         android:hint="위치 검색"
-                        android:onKeyBoardSearch="@{fragmentVM}"
                         android:imeOptions="actionSearch"
+                        android:onKeyBoardSearch="@{fragmentVM}"
                         android:paddingHorizontal="4dp"
                         android:singleLine="true"
                         android:text="@={fragmentVM.inputSearch}"
@@ -79,9 +84,9 @@
                     <androidx.appcompat.widget.AppCompatButton
                         android:layout_width="12dp"
                         android:layout_height="12dp"
+                        android:background="@drawable/img_close_edittext"
                         android:onClick="@{()->fragmentVM.deleteInput()}"
                         android:visibility="@{!fragmentVM.inputSearch.empty}"
-                        android:background="@drawable/img_x"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintDimensionRatio="1"
                         app:layout_constraintEnd_toEndOf="parent"
