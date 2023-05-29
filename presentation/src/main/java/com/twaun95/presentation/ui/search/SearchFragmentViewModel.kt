@@ -37,4 +37,8 @@ class SearchFragmentViewModel @Inject constructor(
             stopLoading()
         }
     }
+
+    fun deleteInput() {
+        inputSearch.value = ""
+    }
 }
