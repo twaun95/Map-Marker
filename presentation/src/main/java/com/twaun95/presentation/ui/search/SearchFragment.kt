@@ -1,5 +1,6 @@
 package com.twaun95.presentation.ui.search
 
+import android.view.MotionEvent
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
