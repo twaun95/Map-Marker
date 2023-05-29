@@ -78,7 +78,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center_vertical"
+                            android:paddingHorizontal="4dp"
                             android:text="@={viewModel.currentLocation}"
+                            android:textColor="@color/gray"
+                            android:textSize="16dp"
                             tools:text="현제 위치" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -87,15 +90,16 @@
                         android:id="@+id/button_close"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
+                        android:visibility="@{viewModel.mapViewStatus.equals(MapViewStatus.MARKER)}"
                         app:layout_constraintDimensionRatio="1"
                         app:layout_constraintRight_toRightOf="parent">
 
-                        <TextView
+                        <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_margin="12dp"
                             android:gravity="center"
-                            android:text="닫기"
-                            android:visibility="@{viewModel.mapViewStatus.equals(MapViewStatus.MARKER)}" />
+                            android:src="@drawable/img_close" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
