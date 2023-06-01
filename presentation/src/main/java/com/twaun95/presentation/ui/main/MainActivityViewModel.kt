@@ -26,9 +26,9 @@ class MainActivityViewModel @Inject constructor() : BaseViewModel() {
     private val _selectedPace = MutableLiveData<Place>()
     val selectedPace: LiveData<Place> get() = _selectedPace
 
-    fun trackingModeOnOff() {
-        _isTrackingMode.value = _isTrackingMode.value == false
-    }
+    fun trackingModeOnOff() { _isTrackingMode.value = _isTrackingMode.value == false }
+    fun trackingModeOn() { _isTrackingMode.value = true }
+    fun trackingModeOff() { _isTrackingMode.value = false }
 
     fun onSelectItem(item: Place) {
         _selectedPace.value = item

@@ -70,6 +70,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
                 }
                 MapViewStatus.MARKER -> {
                     // 마커 주소 상단바에 표시, X 표시
+                    viewModel.trackingModeOff()
                 }
                 else -> {}
             }
