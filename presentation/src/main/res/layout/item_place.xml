@@ -14,53 +14,94 @@
         android:id="@+id/layout_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="20dp"
         android:clickable="true"
         android:focusable="true">
 
-        <TextView
-            android:id="@+id/tv_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{data.id}"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="아이디" />
+        <View
+            android:id="@+id/gl_left"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            app:layout_constraintLeft_toLeftOf="parent" />
 
         <TextView
             android:id="@+id/tv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{data.name}"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_id"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            android:textStyle="normal"
+            app:layout_constraintLeft_toLeftOf="@id/gl_left"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="장소이름" />
-
-        <TextView
-            android:id="@+id/tv_address"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{data.address}"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_name"
-            tools:text="주소" />
 
         <TextView
             android:id="@+id/tv_category"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{data.category}"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_address"
+            android:layout_marginLeft="6dp"
+            android:text="@{data.category_group_name}"
+            android:textColor="@color/gray"
+            android:textSize="13dp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_name"
+            app:layout_constraintStart_toEndOf="@id/tv_name"
             tools:text="카테고리그룹이름" />
 
         <TextView
-            android:id="@+id/tv_url"
+            android:id="@+id/tv_distance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{data.url}"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_category"
-            tools:text="url" />
+            android:layout_marginTop="4dp"
+            android:text="12.2km"
+            android:textSize="15dp"
+            app:layout_constraintLeft_toLeftOf="@id/gl_left"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name"
+            tools:text="12.2km" />
+
+        <View
+            android:id="@+id/v_line_distance_address"
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:layout_marginVertical="2dp"
+            android:layout_marginLeft="5dp"
+            android:background="@color/gray_light"
+            app:layout_constraintBottom_toBottomOf="@id/tv_distance"
+            app:layout_constraintLeft_toRightOf="@id/tv_distance"
+            app:layout_constraintRight_toLeftOf="@id/tv_address"
+            app:layout_constraintTop_toTopOf="@id/tv_distance" />
+
+        <TextView
+            android:id="@+id/tv_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="@{data.address}"
+            android:textSize="15dp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_distance"
+            app:layout_constraintLeft_toRightOf="@id/v_line_distance_address"
+            app:layout_constraintTop_toTopOf="@id/tv_distance"
+            tools:text="경기도 군포시 오금로 34" />
+
+        <TextView
+            android:id="@+id/tv_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@{data.phone}"
+            android:textSize="15dp"
+            android:visibility="@{!data.phone.empty}"
+            app:layout_constraintLeft_toLeftOf="@id/gl_left"
+            app:layout_constraintTop_toBottomOf="@id/tv_distance"
+            tools:text="010-1234-5678" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/gray_light"
+            app:layout_constraintTop_toBottomOf="@id/tv_phone" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
