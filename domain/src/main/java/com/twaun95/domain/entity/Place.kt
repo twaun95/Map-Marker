@@ -6,6 +6,7 @@ data class Place(
     val address: String,
     val category: String,
     val category_group_name: String,
+    val phone: String,
     val url: String,
     val x: String,
     val y: String

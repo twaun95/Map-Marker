@@ -25,6 +25,7 @@ class PlaceRepositoryImpl @Inject constructor(
                 it.address_name,
                 it.category_name,
                 it.category_group_code,
+                it.phone,
                 it.place_url,
                 it.x,
                 it.y
